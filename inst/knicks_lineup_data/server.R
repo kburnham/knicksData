@@ -15,7 +15,13 @@ library(lubridate)
 library(reactable)
 library(glue)
 
-authenticate_v2_x(apikey = keyring::key_get('msf_api_key'))
+#authenticate_v2_x(apikey = keyring::key_get('msf_api_key'))
+
+library(glue)
+options("tidynbadata.archive_path" = '/srv/shiny-server/tidynbadata_archive') 
+
+authenticate_v2_x(apikey = "ccb96ac1-d36b-482d-ab27-29ffff")
+
 sched <- get_team_schedule(team = 'Knicks')
 kgs <- sched %>% filter(status == 'complete') %>% pull(msf_game_id)
 pbp_list <- map(kgs, load_pbp, team = 83)

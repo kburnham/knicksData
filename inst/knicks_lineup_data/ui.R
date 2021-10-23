@@ -12,6 +12,7 @@ library(shiny)
 
 # Define UI for application that draws a histogram
 library(shinydashboard)
+library(reactable)
 
 dashboardPage(
   dashboardHeader(title = 'NY Knicks'),
