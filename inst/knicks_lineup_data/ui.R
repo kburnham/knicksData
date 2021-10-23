@@ -9,10 +9,11 @@
 
 library(shiny)
 
+
 # Define UI for application that draws a histogram
 library(shinydashboard)
 
 dashboardPage(
   dashboardHeader(title = 'NY Knicks'),
   dashboardSidebar(),
-  dashboardBody(tableOutput('lu')))
+  dashboardBody(reactableOutput('lu')))

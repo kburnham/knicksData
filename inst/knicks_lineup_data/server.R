@@ -12,7 +12,8 @@ library(tidynbadata)
 library(tidyverse)
 library(mysportsfeedsR)
 library(lubridate)
-
+library(reactable)
+library(glue)
 
 authenticate_v2_x(apikey = keyring::key_get('msf_api_key'))
 sched <- get_team_schedule(team = 'Knicks')
@@ -35,7 +36,7 @@ lu_dat <- summarize_lineup_performance(pbps, 1, 4, player_data$api_json$players)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
-  output$lu <- renderTable({lu_dat})
+  output$lu <- renderReactable({reactable(lu_dat)})
 
 
 
