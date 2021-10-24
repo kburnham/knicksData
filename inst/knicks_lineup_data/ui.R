@@ -16,5 +16,15 @@ library(reactable)
 
 dashboardPage(
   dashboardHeader(title = 'NY Knicks'),
-  dashboardSidebar(),
+  dashboardSidebar(
+   checkboxInput('use_initials', 'use player initials/jersey name', value = TRUE),
+   checkboxGroupInput('select_game', 
+                      'choose games to include',
+                      choiceNames = choice_names,
+                      choiceValues = kgs,
+                      selected = tail(kgs, 1)
+                      
+   ),
+   uiOutput('select_game')
+    ),
   dashboardBody(reactableOutput('lu')))
