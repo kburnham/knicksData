@@ -1,30 +1,20 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
-
-
-# Define UI for application that draws a histogram
 library(shinydashboard)
 library(reactable)
+library(dashboardthemes)
 
+
+source('/srv/shiny-server/knicksData/inst/custom_theme.R')
 dashboardPage(
   dashboardHeader(title = 'NY Knicks'),
   dashboardSidebar(
-   checkboxInput('use_initials', 'use player initials/jersey name', value = TRUE),
-   checkboxGroupInput('select_game', 
-                      'choose games to include',
-                      choiceNames = choice_names,
-                      choiceValues = kgs,
-                      selected = tail(kgs, 1)
-                      
-   ),
-   uiOutput('select_game')
+   checkboxInput('use_initials', 'use player initials + jersey number', value = TRUE),
+   sliderInput('minimum_minutes', 'Minimum minutes played:', 0, 20, 0),
+   uiOutput('game_selector2'),
+   uiOutput('player_selector2')
+   
     ),
-  dashboardBody(reactableOutput('lu')))
+  dashboardBody(
+    customTheme,
+    reactableOutput('lu'))
+  )
