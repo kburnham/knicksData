@@ -30,10 +30,11 @@ player_data <- msf_get_results(version = '2.0',
                                           feed = 'players',
                                           season = getOption('tidynbadata.current_season'))
 
-# 
-# lu_dat <- summarize_lineup_performance(pbps, 1, 4, player_data$api_json$players, use_player_initials = TRUE) 
 
-# lu_dat %>% filter(tidynbadata:::filter_lineup(lineup_vec, includes = c(27724, 9142), excludes = c()))
+# debugonce(summarize_lineup_performance)
+lu_dat <- summarize_lineup_performance(pbp_list[[3]], 1, 4, player_data$api_json$players) %>%
+  select(-lineup_vec)
+
 
 get_game_label <- function(game_id, sched) {
   sched %>% filter(msf_game_id == game_id) %>% 
